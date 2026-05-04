@@ -40,35 +40,35 @@ recomendaciones = ""
 msg_sec = analizar_seguridad(fire_estado)
 if msg_sec:
     problemas += msg_sec
-    recomendaciones += "Activar el firewall desde la consola de red"
+    recomendaciones += "Activar el firewall desde la consola de red\n"
 
 msg_res = analizar_recursos_criticos(CPU_uso, RAM_uso)
 if msg_res:
     problemas += msg_res
-    recomendaciones += "Finalizar procesos de alta prioridad o reiniciar el nodo"
+    recomendaciones += "Finalizar procesos de alta prioridad o reiniciar el nodo\n"
 
 if 40 <= CPU_uso <= 70:
     pass
 
 if sv_tipo == "WEB" and usuarios_cantidad > 100 and CPU_uso > 75:
-    problemas += "RIESGO: saturacion por trafico web"
-    recomendaciones += "Implementar balanceador de carga o escalar CPU"
+    problemas += "RIESGO: saturacion por trafico web\n"
+    recomendaciones += "Implementar balanceador de carga o escalar CPU\n"
 
 if disco_libre < 10 or procesos_cantidad > 300:
-    problemas += "ADVERTENCIA: poco espacio en disco o exceso de procesos activos"
-    recomendaciones += "Realizar limpieza de logs y depuracion de procesos"
+    problemas += "ADVERTENCIA: poco espacio en disco o exceso de procesos activos\n"
+    recomendaciones += "Realizar limpieza de logs y depuracion de procesos\n"
 
 if sv_tipo == "BASE DE DATOS" and RAM_uso > 90:
-    problemas += "ALERTA: memoria insuficiente para la base de datos."
-    recomendaciones += "Optimizar indices y consultas SQL"
+    problemas += "ALERTA: memoria insuficiente para la base de datos.\n"
+    recomendaciones += "Optimizar indices y consultas SQL\n"
 
 if carga_recursos_total > 80 and disco_libre < 20:
-    problemas += "Estado: rendimiento general degradado (Carga alta + Disco bajo)"
-    recomendaciones += "Ampliar almacenamiento"
+    problemas += "Estado: rendimiento general degradado (Carga alta + Disco bajo)\n"
+    recomendaciones += "Ampliar almacenamiento\n"
 
 if procesos_por_usuario > 50 and CPU_uso > 60: 
-    problemas += "Anomalia: Demasiados procesos por cada usuario conectado"
-    recomendaciones += " Buscar posible malware"
+    problemas += "Anomalia: Demasiados procesos por cada usuario conectado\n"
+    recomendaciones += " Buscar posible malware\n"
 
 estado_final = "Sistema Estable" if not problemas else "ALERTA"
 

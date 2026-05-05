@@ -1,3 +1,15 @@
+# Sistema de diagnostico de servidor
+## Datos del proyecto
+### Integrantes
+- Matias Ruiz Diaz
+- Ithiel Ruiz
+- Santiago Poustis
+- Gianluca Di Giacomo
+
+### Lenguaje utilizado
+- Python 3.13.5
+
+
 Listado de Reglas Implementadas - Sprint 1
 
 8 reglas logicas utilizadas para el diagnostico del servidor

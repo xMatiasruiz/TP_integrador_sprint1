@@ -7,7 +7,7 @@ def analizar_seguridad(fire_estado):
     Devuelve: un mensaje de falla o un string vacío.
     """
     if not fire_estado == "ACTIVO":
-        return "Critico: El firewall no esta activo. Riesgo de intrusion.\n"
+        return "🚨🚨Critico: El firewall no esta activo. Riesgo de intrusion.\n"
     return ""
 
 def analizar_recursos_criticos(cpu, ram):
@@ -17,7 +17,7 @@ def analizar_recursos_criticos(cpu, ram):
     Devuelve: un mensaje de alerta (str) o un string vacío.
     """
     if cpu > 85 and ram > 80: 
-        return "ALERTA: SOBRECARGA CRITICA DE HARDWARE (CPU/RAM).\n"
+        return "🚨🚨ALERTA: SOBRECARGA CRITICA DE HARDWARE (CPU/RAM).\n"
     return ""
 
 # ---- PROGRAMA PRINCIPAL ---- 
@@ -39,7 +39,7 @@ procesos_cantidad = int(input("Cantidad de procesos activos: "))
 SO_tipo = input("Sistema Operativo (Linux/ Windows Server): ").strip().upper()
 fire_estado = input("Estado del Firewall (Activo / Desactivado): ").strip().upper()
 sv_tipo = input("Tipo de servidor(Web / Base de datos / Archivos): ").strip().upper()
-
+## Indice de carga global
 carga_recursos_total = (CPU_uso + RAM_uso) / 2 
 
 procesos_por_usuario = procesos_cantidad / usuarios_cantidad if usuarios_cantidad > 0 else procesos_cantidad

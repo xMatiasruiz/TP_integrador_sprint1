@@ -6,11 +6,38 @@
 - Santiago Poustis
 - Gianluca Di Giacomo
 
-### Lenguaje utilizado
-- Python 3.13.5
+### Tecnologias utilizadas
+* **Lenguaje:** Python 3.13.5
+* **IDE:** Visual Studio Code
+* **Control de versiones:** Git + GitHub
 
+## Descripcion del codigo
 
-Listado de Reglas Implementadas - Sprint 1
+Es una aplicacion que analiza el estado de un servidor a partir de datos solicitados al usuario
+
+### Objetivos
+
+- Evaluar el rendimiento del servidor
+- Detectar posibles fallos
+- Generar alertas
+- Entrega al usuario recomendaciones de administracion 
+
+## Reglas
+Debe implementarse: 
+
+- Un mínimo de 8 reglas (condiciones que evalúen distintas variables).  
+
+### Las reglas deben incluir: 
+
+- Reglas que utilicen 3 o más variables en la condición. 
+
+- 3 reglas con combinación AND / OR. 
+
+- 1 regla con NOT. 
+
+- 1 regla que evalúe rangos numéricos. 
+
+# Listado de Reglas Implementadas - Sprint 1
 
 8 reglas logicas utilizadas para el diagnostico del servidor
 
@@ -29,3 +56,48 @@ Listado de Reglas Implementadas - Sprint 1
 7. Rendimiento Degradado(Variable Calculada): Utiliza la variable calculada carga_recursos_total. Si es mayor a 80 y el disco es menor a 20gb, el sistema entra en estado de alerta
 
 8. Anomalia de Procesos(Variable Calculada): Utiliza procesos_por_usuario si un usuario tiene mas de 50 procesos en promedio y la CPU esta alta, se alerta por posible malware
+
+### Flujo del codigo
+
+    1. Solicitar datos al usuario
+    2. Calcula los valores de uso de CPU Y RAM
+    3. Se evaluan las reglas condicionales
+    4. Acumulacion de alertas en base a las condiciones cumplidas
+    5. Determinar estado final
+    6. Presentacion de Resultado y Reporte Tecnico
+
+
+## **Ejemplo de ejecucion**
+
+### Datos ingresados 
+    - Nombre del servidor: sv-prueba
+    - Responsable: ejemplo
+    - CPU: 95
+    - RAM: 92
+    - Disco: 5
+    - Usuarios: 2
+    - Procesos: 350
+    - S.O: Linux
+    - Firewall: Desactivado
+    - Tipo de servidor: Web
+
+### **Resultado**
+
+··················································
+REPORTE TÉCNICO PARA: sv-critico
+RESPONSABLE:        made
+ESTADO GENERAL:     ALERTA ❗
+··················································
+Problemas detectados:
+Critico: El firewall no esta activo. Riesgo de intrusion.
+ALERTA: SOBRECARGA CRITICA DE HARDWARE (CPU/RAM).
+❌ ADVERTENCIA: poco espacio en disco o exceso de procesos activos
+❌ Estado: rendimiento general degradado (Carga alta + Disco bajo)
+❌ Anomalia: Demasiados procesos por cada usuario conectado
+
+Recomendaciones tecnicas:
+💡 Activar el firewall desde la consola de red
+💡 Finalizar procesos de alta prioridad o reiniciar el nodo
+💡 Limpiar archivos y revisar procesos
+💡 Ampliar almacenamiento
+💡 Buscar posible malware

@@ -81,8 +81,8 @@ Debe implementarse:
     - Firewall: Desactivado
     - Tipo de servidor: Web
 
-### **Resultado**
-
+### **Resultado:**
+```text
 ··················································
 REPORTE TÉCNICO PARA: sv-critico
 RESPONSABLE:        made

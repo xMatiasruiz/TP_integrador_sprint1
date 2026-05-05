@@ -1,13 +1,23 @@
 # ---- FUNCIONES ---- 
 
 def analizar_seguridad(fire_estado):
+    """
+    Evalúa si el firewall está activo o no.
+    Recibe: fire_estado (str)
+    Devuelve: un mensaje de falla o un string vacío.
+    """
     if not fire_estado == "ACTIVO":
-        return "Critico: El firewall no esta activo. Riesgo de intrusion."
+        return "Critico: El firewall no esta activo. Riesgo de intrusion.\n"
     return ""
 
 def analizar_recursos_criticos(cpu, ram):
+    """
+    Evalúa si el uso del hardware es excesivo (Regla con AND).
+    Recibe: cpu (float), ram (float).
+    Devuelve: un mensaje de alerta (str) o un string vacío.
+    """
     if cpu > 85 and ram > 80: 
-        return "ALERTA: SOBRECARGA CRITICA DE HARDWARE (CPU/RAM)."
+        return "ALERTA: SOBRECARGA CRITICA DE HARDWARE (CPU/RAM).\n"
     return ""
 
 # ---- PROGRAMA PRINCIPAL ---- 
@@ -26,7 +36,7 @@ disco_libre = float(input("Espacio libre en disco (GB):"))
 usuarios_cantidad = int(input("Cantidad de usuarios conectados: "))
 procesos_cantidad = int(input("Cantidad de procesos activos: "))
 ## ESTADOS
-SO_tipo = input("Sistema Operativo (Linux/ Windows Server)").strip().upper()
+SO_tipo = input("Sistema Operativo (Linux/ Windows Server): ").strip().upper()
 fire_estado = input("Estado del Firewall (Activo / Desactivado): ").strip().upper()
 sv_tipo = input("Tipo de servidor(Web / Base de datos / Archivos): ").strip().upper()
 
@@ -68,7 +78,7 @@ if carga_recursos_total > 80 and disco_libre < 20:
 
 if procesos_por_usuario > 50 and CPU_uso > 60: 
     problemas += "Anomalia: Demasiados procesos por cada usuario conectado\n"
-    recomendaciones += " Buscar posible malware\n"
+    recomendaciones += "Buscar posible malware\n"
 
 estado_final = "Sistema Estable" if not problemas else "ALERTA"
 

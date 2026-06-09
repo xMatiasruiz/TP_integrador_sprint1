@@ -1,16 +1,17 @@
 import calculos
 import inputs
+import output 
 
 def correr_sprint2():
     """
     Funcion integradora: recolecta datos mediante inputs, llama a evaluar_sistema 
-    en calculos y muestra los resultados formateados en pantalla.
+    en calculos y delega la impresion de resultados al modulo output.
     """
     print("\n" + "=" * 50)
     print("  INICIANDO DIAGNÓSTICO DE SERVIDORES  ")
     print("=" * 50)
 
-    # 1. Recolección de datos usando tu módulo inputs
+    # 1. Recolección de datos usando módulo inputs
     nombre_sv = inputs.pedir_nombre_servidor()
     cpu = inputs.pedir_porcentaje_hardware("CPU")
     ram = inputs.pedir_porcentaje_hardware("RAM")
@@ -20,29 +21,13 @@ def correr_sprint2():
     servicios_activos = inputs.pedir_cantidad_positiva("servicios activos")
     trafico_red = inputs.pedir_porcentaje_hardware("Tráfico de Red (MB/s)")
 
-    print("\n" + "-" * 50)
-    print(f"Procesando diagnóstico para el servidor: {nombre_sv}")
-    print("-" * 50)
-
     # 2. Evaluación de las reglas mediante el módulo calculos
     alertas, recomendaciones = calculos.evaluar_sistema(
         cpu, ram, disco_libre, so, firewall, servicios_activos, trafico_red
     )
 
-    # 3. Mostrar resultados en pantalla recorriendo las listas con len()
-    print("\n⚠️  ALERTAS DETECTADAS:")
-    hubo_alertas = False
-    
-    for i in range(len(alertas)):
-        if alertas[i] != "":
-            print(f"- {alertas[i]}")
-            print(f"  💡 Recomendación: {recomendaciones[i]}")
-            hubo_alertas = True
-
-    if not hubo_alertas:
-        print("✅ El servidor se encuentra en un estado estable y seguro. No se detectaron anomalías.")
-
-    print("\n" + "=" * 50)
+    # 3. Muestra resultados usando la funcion especializada de output.py
+    output.mostrar_diagnostico(nombre_sv, alertas, recomendaciones)
 
 
 def mostrar_menu():

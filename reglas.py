@@ -30,7 +30,7 @@ def regla_servicio_inestable(servicios_activos: int, ram:float) -> bool:
     """
     return servicios_activos <= 3 and ram > 75.0
 
-def regla_alerta_saturancion_red(trafico_red: float, firewall: str) -> bool:
+def regla_alerta_saturacion_red(trafico_red: float, firewall: str) -> bool:
     """Regla 6 (Multivariable): Trafico al limite y firewall procesando todo"""
 
     return trafico_red > 800.0 and firewall == "Activado"

@@ -38,7 +38,7 @@ def evaluar_sistema(cpu: float, ram: float, disco_libre: float, so: str, firewal
         
     if reglas.regla_optimizacion_so(so, servicios_activos):
         alertas[7] = "Entorno Linux con sobrecarga de procesos activos."
-        recomendaciones[7] = "Optimizar hilos de ejecución o distribuir tareas cron."
+        recomendaciones[7] = "Optimizar hilos de ejecución o distribuir tareas."
     
 
     return alertas, recomendaciones

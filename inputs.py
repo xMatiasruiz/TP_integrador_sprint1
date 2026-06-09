@@ -70,7 +70,7 @@ def pedir_cantidad_positiva(tipo_cantidad: str) -> int:
         cantidad_ingresada = int(ingreso_usuario)
 
         # Mandamos el numero entero a la funcion de validaciones
-        if validaciones.vlaidar_cantidad_positiva(cantidad_ingresada):
+        if validaciones.validar_cantidad_positiva(cantidad_ingresada):
             cantidad_valida = True
 
         else:

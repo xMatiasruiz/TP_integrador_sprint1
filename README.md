@@ -1,103 +1,89 @@
-# Sistema de diagnostico de servidor
-## Datos del proyecto
+# Sistema de Diagnóstico de Servidores
+
+## 🏫 Datos del Proyecto
 ### Integrantes
 - Matias Ruiz Diaz
 - Ithiel Ruiz
 - Santiago Poustis
 - Gianluca Di Giacomo
 
-### Tecnologias utilizadas
-* **Lenguaje:** Python 3.13.5
+### Tecnologías utilizadas
+* **Lenguaje:** Python 3.13
 * **IDE:** Visual Studio Code
 * **Control de versiones:** Git + GitHub
 
-## Descripcion del codigo
+---
 
-Es una aplicacion que analiza el estado de un servidor a partir de datos solicitados al usuario
+## 🚀 Descripción del Código
+Es una aplicación de consola diseñada bajo un enfoque de **arquitectura modular** que analiza de forma automatizada el estado de salud, rendimiento y seguridad de un servidor a partir de las métricas solicitadas al usuario.
 
 ### Objetivos
+- Evaluar el rendimiento del hardware y software del servidor en tiempo real.
+- Detectar vulnerabilidades críticas de seguridad.
+- Consolidar alertas y recomendaciones técnicas utilizando listas e índices algorítmicos (sin métodos avanzados de listas).
+- Entregar al administrador un reporte técnico limpio y estructurado.
 
-- Evaluar el rendimiento del servidor
-- Detectar posibles fallos
-- Generar alertas
-- Entrega al usuario recomendaciones de administracion 
+---
 
-## Reglas
-Debe implementarse: 
+## 🛠️ Arquitectura Modular (Sprint 2)
+El código se reestructuró por completo en módulos con responsabilidades independientes para cumplir con las buenas prácticas de desarrollo:
 
-- Un mínimo de 8 reglas (condiciones que evalúen distintas variables).  
+* **`main.py`:** Punto de entrada. Inicializa la aplicación invocando al menú principal.
+* **`menu.py`:** Controla el flujo de navegación de la interfaz de usuario en consola.
+* **`inputs.py`:** Centraliza la captura de datos por teclado.
+* **`validaciones.py`:** Contiene las funciones de control encargadas de verificar rangos, tipos de datos y textos mínimos.
+* **`reglas.py`:** Lógica pura del negocio. Aloja las 8 funciones condicionales de evaluación.
+* **`calculos.py`:** Procesa las métricas llamando a las reglas y guardando los resultados en listas paralelas ordenadas por índice.
+* **`output.py`:** Módulo especializado en recorrer las listas mediante bucles `while` y dar formato visual al reporte final.
 
-### Las reglas deben incluir: 
+---
 
-- Reglas que utilicen 3 o más variables en la condición. 
+## 🧠 Listado de Reglas Implementadas
+El sistema evalúa de manera algorítmica un mínimo de 8 reglas lógicas combinadas (cumpliendo con operadores `AND`, `OR`, `NOT`, rangos numéricos y combinaciones de 3 o más variables):
 
-- 3 reglas con combinación AND / OR. 
+1. **Sobrecarga de Hardware (`AND`):** Alerta si el uso de CPU y RAM superan simultáneamente el 85.0%.
+2. **Almacenamiento Crítico (`AND`):** Alerta si el espacio libre en disco es menor al 15.0% y hay más de 10 servicios activos.
+3. **Vulnerabilidad de S.O. (`AND`):** Alerta si el sistema es "Windows Server" y el Firewall está "Desactivado".
+4. **Tráfico Sospechoso (`AND`):** Alerta si la CPU está por debajo del 20.0% pero el tráfico de red supera los 500.0 MB/s (posible anomalía/ataque).
+5. **Servicio Inestable (`AND`):** Detecta fuga de memoria si hay menos de 3 servicios activos pero consumen más del 80.0% de RAM.
+6. **Saturación de Red (3+ Variables / `AND`):** Alerta si el tráfico supera los 800.0 MB/s, el firewall está "Activado" y el sistema mitiga la carga.
+7. **Mantenimiento Urgente (`OR` / Rango Numérico):** Determina colapso inminente si el disco libre cae por debajo del 5.0% **O** la CPU supera el 95.0%.
+8. **Optimización de S.O. (`AND`):** Alerta si el entorno es "Linux" y maneja una sobrecarga de más de 25 servicios activos.
 
-- 1 regla con NOT. 
+---
 
-- 1 regla que evalúe rangos numéricos. 
+## 💻 Flujo de Ejecución del Programa
+1. **`main.py`** arranca y cede el control a **`menu.py`**.
+2. El usuario selecciona la opción `1` para iniciar el diagnóstico.
+3. **`inputs.py`** pide los datos secuencialmente y se apoya en **`validaciones.py`** para asegurar que los porcentajes estén entre 0 y 100, y las cadenas sean válidas.
+4. Los datos validados se envían a **`calculos.py`**, el cual interactúa con **`reglas.py`** para procesar la lógica de las listas.
+5. Las listas de alertas y recomendaciones resultantes son capturadas por **`output.py`** para imprimirlas en la terminal de forma amigable.
 
-# Listado de Reglas Implementadas - Sprint 1
+---
 
-8 reglas logicas utilizadas para el diagnostico del servidor
+## 📋 Ejemplo de Ejecución en Consola
 
-1. Seguridad(Operador NOT): Evalua si el fire_estado no es "ACTIVO". si el firewall esta desactivado, se genera una alerta critica
+### Datos ingresados de prueba:
+- **Nombre del servidor:** sv-produccion-utn
+- **CPU:** 90.0
+- **RAM:** 92.0
+- **Espacio Libre en Disco:** 50.0
+- **Sistema Operativo:** Windows Server
+- **Firewall:** Desactivado
+- **Servicios activos:** 5
+- **Tráfico de Red (MB/s):** 120.0
 
-2. Sobrecarga de Hardware(Operador AND): si el CPU_uso es mayor a 85% y el RAM_uso es mayor a 80%, se detecta una sobrecarga critica.
-
-3. Mantenimiento(Operador OR): Si el disco_libre es menor a 10gb o la procesos_cantidad supera los 250_ se recomienda limpieza.
-
-4. Rango Estable(Rango Numerico): Se evalua si el CPU_uso se encuentra entre el 40% y 70% para informar un estado de trabajo normal.
-
-5. Saturacion Web(3+ variables): Especifica para servidores tipo "WEB". Evalua si el tipo_servidor es web, los usuarios_cantidad superan los 100 y el CPU_uso es mayor a 75%.
-
-6. Memoria en Base de Datos: Si el sv_tipo es "Base de Datos" y el RAM_uso supera el 90%, se alerta sobre posible perdida de rendimiento.
-
-7. Rendimiento Degradado(Variable Calculada): Utiliza la variable calculada carga_recursos_total. Si es mayor a 80 y el disco es menor a 20gb, el sistema entra en estado de alerta
-
-8. Anomalia de Procesos(Variable Calculada): Utiliza procesos_por_usuario si un usuario tiene mas de 50 procesos en promedio y la CPU esta alta, se alerta por posible malware
-
-### Flujo del codigo
-
-    1. Solicitar datos al usuario
-    2. Calcula los valores de uso de CPU Y RAM
-    3. Se evaluan las reglas condicionales
-    4. Acumulacion de alertas en base a las condiciones cumplidas
-    5. Determinar estado final
-    6. Presentacion de Resultado y Reporte Tecnico
-
-
-## **Ejemplo de ejecucion**
-
-### Datos ingresados 
-    - Nombre del servidor: sv-prueba
-    - Responsable: ejemplo
-    - CPU: 95
-    - RAM: 92
-    - Disco: 5
-    - Usuarios: 2
-    - Procesos: 350
-    - S.O: Linux
-    - Firewall: Desactivado
-    - Tipo de servidor: Web
-
-### **Resultado:**
+### Resultado del Reporte Técnico generado:
 ```text
-··················································
-REPORTE TÉCNICO PARA: sv-critico
-RESPONSABLE:        made
-ESTADO GENERAL:     ALERTA ❗
-··················································
+============================================================
+DIAGNOSTICO DEL SERVIDOR: sv-produccion-utn
+============================================================
+Estado General: Alerta crtica / Revision
+------------------------------------------------------------
 Problemas detectados:
-Critico: El firewall no esta activo. Riesgo de intrusion.
-ALERTA: SOBRECARGA CRITICA DE HARDWARE (CPU/RAM).
-❌ ADVERTENCIA: poco espacio en disco o exceso de procesos activos
-❌ Estado: rendimiento general degradado (Carga alta + Disco bajo)
-❌ Anomalia: Demasiados procesos por cada usuario conectado
+- Uso critico de recursos principales (CPU/RAM).
+  💡 Recomendación: Reiniciar servicios pesados o escalar hardware.
+- Servidor Windows expuesto sin Firewall activo
+  💡 Recomendación: Habilitar el firewall del sistema de inmediato
 
-Recomendaciones tecnicas:
-💡 Activar el firewall desde la consola de red
-💡 Finalizar procesos de alta prioridad o reiniciar el nodo
-💡 Limpiar archivos y revisar procesos
-💡 Ampliar almacenamiento
-💡 Buscar posible malware
+============================================================

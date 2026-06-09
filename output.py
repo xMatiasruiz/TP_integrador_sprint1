@@ -26,7 +26,7 @@ def mostrar_diagnostico(nombre_servidor: str, alertas: list, recomendaciones: li
     i=0
     while i < len(alertas):
         if alertas[i] != "":
-            print(f"{alertas[i]}")
+            print(f"💢{alertas[i]}")
             hay_alertas = True
         i = i + 1 
     if not hay_alertas:

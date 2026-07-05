@@ -1,0 +1,60 @@
+{
+    "servidor01": {
+        "cpu": 90.0,
+        "ram": 56.0,
+        "disco": 45.0,
+        "sistema operativo": "Linux",
+        "firewall": "Activado",
+        "servicios activos": 34,
+        "trafico red": 34.0,
+        "alertas": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Entorno Linux con sobrecarga de procesos activos."
+        ],
+        "recomendaciones": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Optimizar hilos de ejecuci\u00f3n o distribuir tareas."
+        ]
+    },
+    "servidor02": {
+        "cpu": 80.0,
+        "ram": 56.0,
+        "disco": 45.0,
+        "sistema operativo": "Windows Server",
+        "firewall": "Desactivado",
+        "servicios activos": 70,
+        "trafico red": 40.0,
+        "alertas": [
+            "",
+            "",
+            "Servidor Windows expuesto sin Firewall activo",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "recomendaciones": [
+            "",
+            "",
+            "Habilitar el firewall del sistema de inmediato",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    }
+}

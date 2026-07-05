@@ -2,35 +2,7 @@ import calculos
 import inputs
 import output 
 import funciones_de_validacion
-
-def correr_sprint2():
-    """
-    Funcion integradora: recolecta datos mediante inputs, llama a evaluar_sistema 
-    en calculos y delega la impresion de resultados al modulo output.
-    """
-    print("\n" + "=" * 50)
-    print("  INICIANDO DIAGNÓSTICO DE SERVIDORES  ")
-    print("=" * 50)
-
-    # 1. Recolección de datos usando módulo inputs
-    nombre_sv = inputs.pedir_nombre_servidor()
-    cpu = inputs.pedir_porcentaje_hardware("CPU")
-    ram = inputs.pedir_porcentaje_hardware("RAM")
-    disco_libre = inputs.pedir_porcentaje_hardware("Espacio Libre en Disco")
-    so = inputs.pedir_sistema_operativo()
-    firewall = inputs.pedir_estado_firewall()
-    servicios_activos = inputs.pedir_cantidad_positiva("servicios activos")
-    trafico_red = inputs.pedir_porcentaje_hardware("Tráfico de Red (MB/s)")
-
-    # 2. Evaluación de las reglas mediante el módulo calculos
-    alertas, recomendaciones = calculos.evaluar_sistema(
-        cpu, ram, disco_libre, so, firewall, servicios_activos, trafico_red
-    )
-
-    # 3. Muestra resultados usando la funcion especializada de output.py
-    output.mostrar_diagnostico(nombre_sv, alertas, recomendaciones)
-
-
+from archivos import  crear_archivo_si_no_existe, registrar_diagnostico, ver_diagnosticos_realizados, buscar_diagnostico, modificar_diagnosticos, eliminar_diagnostico
 def mostrar_menu():
     """
     Controla el flujo del menú principal del sistema.
@@ -48,7 +20,48 @@ def mostrar_menu():
         opcion = input("Opción inválida. Seleccione una opción válida (1/2): ")
 
     if opcion == '1':
-        correr_sprint2()
+        menu_de_archivos()
     else:
         print("Gracias por usar el programa, vuelva pronto!")
-    return opcion
+    
+def menu_de_archivos():
+    
+    """
+    Despliega el menu principal del sistema de gestion de alumnos.
+
+    Esta funcion inicializa el entorno de archivos, mantiene el bucle de ejecucion
+    del programa y gestiona la navegacion entre las distintas funcionalidades
+    del sistema
+    
+    Returns:
+        None: Esta funcion no retorna valores, su proposito es la interaccion directa.
+    """
+    crear_archivo_si_no_existe()
+    bandera = True
+    while bandera:
+        print("\n--- MENU PRINCIPAL ---")
+        print("1. iniciar un diagnostico")
+        print("2. ver diagnosticos")
+        print("3. Buscar un diagnostico")
+        print("4. modificar un diagnostico")
+        print("5. Eliminar un diagnostico")
+        print("6. Salir")
+        print("-" * 30)
+
+        opcion = input("Seleccione una opccion: ")
+
+        if opcion == "1":
+            registrar_diagnostico()
+        elif opcion == "2":
+            ver_diagnosticos_realizados()
+        elif opcion == "3":
+            buscar_diagnostico()
+        elif opcion == "4":
+            modificar_diagnosticos()
+        elif opcion == "5":
+            eliminar_diagnostico()
+        elif opcion == "6":
+            print("Gracias por usar el programa. Hasta luego!")
+            bandera = False
+        else:
+            print("Opcion invalida. Por favor, seleccione una opcion valida.")

@@ -4,8 +4,7 @@
 ### Integrantes
 - Matias Ruiz Diaz
 - Ithiel Ruiz
-- Santiago Poustis
-- Gianluca Di Giacomo
+- Cristian Llanos 
 
 ### Tecnologías utilizadas
 * **Lenguaje:** Python 3.13

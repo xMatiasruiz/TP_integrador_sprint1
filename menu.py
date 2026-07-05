@@ -1,6 +1,7 @@
 import calculos
 import inputs
 import output 
+import funciones_de_validacion
 
 def correr_sprint2():
     """
@@ -41,11 +42,13 @@ def mostrar_menu():
     print("2. Salir")
     print("-" * 50)
     
-    opcion = input("Seleccione una opción: ")
-    
-    if opcion == "1":
+    opcion = input("Seleccione una opción (1 para iniciar / 2 para salir): ")
+
+    while not funciones_de_validacion.validadcion_de_incio_de_diagnostico(opcion):
+        opcion = input("Opción inválida. Seleccione una opción válida (1/2): ")
+
+    if opcion == '1':
         correr_sprint2()
-    elif opcion == "2":
-        print("Saliendo del sistema...")
     else:
-        print("Opción inválida.")
+        print("Gracias por usar el programa, vuelva pronto!")
+    return opcion

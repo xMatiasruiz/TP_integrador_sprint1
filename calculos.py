@@ -61,5 +61,5 @@ def evaluar_sistema(
         alertas[7] = "Entorno Linux con sobrecarga de procesos activos."
         recomendaciones[7] = "Optimizar hilos de ejecución o distribuir tareas."
     
-
+   
     return alertas, recomendaciones

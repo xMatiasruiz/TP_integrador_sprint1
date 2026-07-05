@@ -1,4 +1,4 @@
-import validaciones
+import funciones_de_validacion
 
 def pedir_nombre_servidor() -> str:
     """
@@ -13,7 +13,7 @@ def pedir_nombre_servidor() -> str:
     while not nombre_servidor_valido:
         nombre_servidor = input("Ingrese el nombre del servidor (minimo 6 caracteres): ")
 
-        if validaciones.validar_texto(nombre_servidor):
+        if funciones_de_validacion.validacion_cadena(nombre_servidor):
             nombre_servidor_valido = True
         else:
             print("❌ERROR❌: El nombre debe tener mas de 5 caracteres reales. Reintente.")
@@ -31,17 +31,16 @@ def pedir_porcentaje_hardware(componente: str) -> float:
         float: El porcentaje validado entre 0.0 y 100.0.
     """
     porcentaje_valido = False
-    porcentaje_ingresado = 0.0
 
     while not porcentaje_valido:
-        ingreso_usuario = input(f"Ingrese el porcentaje de uso de {componente}: ")
-        porcentaje_ingresado = float(ingreso_usuario)
-
-        if validaciones.validar_porcentaje(porcentaje_ingresado):
+        porcentaje_ingresado = input(f"Ingrese el porcentaje de uso de {componente}: ")
+        
+        if funciones_de_validacion.validacion_porcentaje_numerico(porcentaje_ingresado):
             porcentaje_valido = True
         else:
             print(f"❌ERROR❌: El porcentaje de {componente} debe estar entre 0 y 100. Reintente.")
-
+    
+    porcentaje_ingresado = float(porcentaje_ingresado)
     return porcentaje_ingresado
 
 def pedir_cantidad_positiva(tipo_cantidad: str) -> int:
@@ -58,14 +57,15 @@ def pedir_cantidad_positiva(tipo_cantidad: str) -> int:
     cantidad_ingresada = 0
 
     while not cantidad_valida:
-        ingreso_usuario = input(f"Ingrese la cantidad de {tipo_cantidad}: ")
-        cantidad_ingresada = int(ingreso_usuario)
+        cantidad_ingresada = input(f"Ingrese la cantidad de {tipo_cantidad}: ")
+        
 
-        if validaciones.validar_cantidad_positiva(cantidad_ingresada):
+        if funciones_de_validacion.validacion_numerico(cantidad_ingresada):
             cantidad_valida = True
         else:
             print(f"❌ERROR❌: La cantidad de {tipo_cantidad} no puede ser negativa. Reintente.")
 
+    cantidad_ingresada = int(cantidad_ingresada)
     return cantidad_ingresada
 
 def pedir_sistema_operativo() -> str:

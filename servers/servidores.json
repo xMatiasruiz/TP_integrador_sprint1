@@ -1,0 +1,89 @@
+{
+    "finaltest": {
+        "cpu": 80.0,
+        "ram": 80.0,
+        "disco": 10.0,
+        "sistema operativo": "Linux",
+        "firewall": "Desactivado",
+        "servicios activos": 100,
+        "trafico red": 10.0,
+        "alertas": [
+            "",
+            "Poco espacio en disco con alta carga de servicios",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Entorno Linux con sobrecarga de procesos activos."
+        ],
+        "recomendaciones": [
+            "",
+            "Liberar almacenamiento temporal y logs",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Optimizar hilos de ejecuci\u00f3n o distribuir tareas."
+        ]
+    },
+    "pruebafinal": {
+        "cpu": 90.0,
+        "ram": 90.0,
+        "disco": 10.0,
+        "sistema operativo": "Linux",
+        "firewall": "Desactivado",
+        "servicios activos": 250,
+        "trafico red": 10.0,
+        "alertas": [
+            "Uso critico de recursos principales (CPU/RAM).",
+            "Poco espacio en disco con alta carga de servicios",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Entorno Linux con sobrecarga de procesos activos."
+        ],
+        "recomendaciones": [
+            "Reiniciar servicios pesados o escalar hardware.",
+            "Liberar almacenamiento temporal y logs",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Optimizar hilos de ejecuci\u00f3n o distribuir tareas."
+        ]
+    },
+    "anashee": {
+        "cpu": 85.0,
+        "ram": 85.0,
+        "disco": 1.0,
+        "sistema operativo": "Linux",
+        "firewall": "Activado",
+        "servicios activos": 255,
+        "trafico red": 10.0,
+        "alertas": [
+            "",
+            "Poco espacio en disco con alta carga de servicios",
+            "",
+            "",
+            "",
+            "",
+            "Colapso inminente de la m\u00e1quina (L\u00edmite de Disco o CPU).",
+            "Entorno Linux con sobrecarga de procesos activos."
+        ],
+        "recomendaciones": [
+            "",
+            "Liberar almacenamiento temporal y logs",
+            "",
+            "",
+            "",
+            "",
+            "Aplicar protocolo de mantenimiento de emergencia.",
+            "Optimizar hilos de ejecuci\u00f3n o distribuir tareas."
+        ]
+    }
+}

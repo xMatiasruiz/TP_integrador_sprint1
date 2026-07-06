@@ -86,3 +86,39 @@ Problemas detectados:
   💡 Recomendación: Habilitar el firewall del sistema de inmediato
 
 ============================================================
+
+
+
+
+## 💾 Evolución a Persistencia de Datos y Diccionarios (Sprint 3)
+Para este sprint, el sistema evolucionó para conservar la información de los diagnósticos entre diferentes ejecuciones del programa y estructurar los datos de manera más eficiente.
+
+### 📁 Formato de Archivo Elegido
+* **Formato:** `JSON` (`servers/servidores.json`).
+* **Justificación:** Se seleccionó este formato debido a su capacidad innata para mapear de forma directa y limpia las estructuras de diccionarios anidados de Python, simulando una base de datos documental que facilita las operaciones de lectura, escritura y actualización sin perder el tipo de dato original.
+
+### 🧠 Organización de los Diccionarios
+Toda la información del sistema se estructuró mediante un **diccionario principal** (donde la clave única es el nombre de cada servidor) que almacena de forma interna **diccionarios embebidos** con los datos técnicos y los resultados calculados. 
+
+La estructura del mapa de datos guardado en el archivo sigue este diseño algorítmico puro:
+* **Llave principal (`str`):** `nombre_servidor`
+* **Valores (`dict`):**
+  * `cpu` (`float`): Porcentaje de uso de la CPU.
+  * `ram` (`float`): Porcentaje de uso de la RAM.
+  * `disco` (`float`): Porcentaje de espacio libre en disco.
+  * `sistema operativo` (`str`): Tipo de S.O.
+  * `firewall` (`str`): Estado del firewall.
+  * `servicios activos` (`int`): Cantidad de procesos.
+  * `trafico red` (`float`): Tráfico medido en MB/s.
+  * `alertas` (`list`): Lista estática con los strings de incidencias detectadas.
+  * `recomendaciones` (`list`): Lista estática con las acciones correctivas sugeridas.
+
+### 🛠️ Nuevos Módulos y Flujo Extendido
+Se incorporó el soporte para la gestión completa del historial técnico:
+* **`archivos.py` (o funciones integradas):** Centraliza el uso del módulo nativo `json` de Python mediante `json.load()` para recuperar el histórico y `json.dump()` con parámetros de indentación para guardar y sobrescribir de forma segura.
+* **Menú de Archivos (Persistencia):** Añade un flujo interactivo en un bucle que permite realizar un ABM completo sobre el JSON:
+  1. Iniciar y registrar un diagnóstico nuevo (Alta).
+  2. Ver el historial completo renderizado prolijamente (Lectura).
+  3. Buscar la ficha técnica de un servidor específico (Consulta).
+  4. Modificar los parámetros técnicos y forzar una re-evaluación (Modificación).
+  5. Remover permanentemente un registro de la base de datos (Baja).

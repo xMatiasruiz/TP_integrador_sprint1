@@ -20,6 +20,7 @@ def pedir_nombre_servidor() -> str:
         
     return nombre_servidor
 
+
 def pedir_porcentaje_hardware(componente: str) -> float:
     """
     Solicita y valida el porcentaje de uso de un componente de hardware.
@@ -43,6 +44,7 @@ def pedir_porcentaje_hardware(componente: str) -> float:
             print(f"❌ERROR❌: El porcentaje de {componente} debe estar entre 0 y 100. Reintente.")
 
     return porcentaje_ingresado
+
 
 def pedir_cantidad_positiva(tipo_cantidad: str) -> int:
     """
@@ -68,6 +70,7 @@ def pedir_cantidad_positiva(tipo_cantidad: str) -> int:
 
     return cantidad_ingresada
 
+
 def pedir_sistema_operativo() -> str:
     """
     Solicita y valida el tipo de sistema operativo instalado.
@@ -84,6 +87,7 @@ def pedir_sistema_operativo() -> str:
         else:
             print("❌ERROR❌: Debe escribir exactamente Linux o Windows Server (respetando mayusculas). Reintente.")
     return so_ingresado
+
 
 def pedir_estado_firewall() -> str:
     """

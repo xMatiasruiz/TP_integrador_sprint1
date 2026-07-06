@@ -27,6 +27,7 @@ def validar_texto(cadena: str) -> bool:
     # Si paso todos los filtros entonces es valido
     return True
 
+
 def validar_porcentaje(valor: float) -> bool:
     """
 
@@ -41,6 +42,7 @@ def validar_porcentaje(valor: float) -> bool:
     if 0.0 <= valor <= 100.0:
         return True
     return False
+
 
 def validar_cantidad_positiva(valor: int) -> bool:
     """ 

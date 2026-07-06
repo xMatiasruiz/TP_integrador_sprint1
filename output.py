@@ -32,6 +32,7 @@ def mostrar_diagnostico(nombre_servidor: str, alertas: list, recomendaciones: li
     if not hay_alertas:
         print("✓ Ninguno. El servidor responde a los parámetros normales")
 
+
     print("\nRecomendaciones de accion:")
     hay_reco = False
     i = 0

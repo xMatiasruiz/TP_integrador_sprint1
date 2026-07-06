@@ -36,15 +36,18 @@ El sistema evalúa de manera algorítmica un mínimo de 8 reglas lógicas combin
 8. **Optimización de S.O. (`AND`):** Alerta si el entorno es "Linux" y maneja una sobrecarga de más de 25 servicios activos.
 
 ---
-💾 Persistencia de Datos y Arquitectura de Memoria (Sprint 3)
-El sistema evolucionó para conservar la información de los diagnósticos entre diferentes ejecuciones del programa y estructurar los datos de manera eficiente.
+## 💾 Evolución a Persistencia de Datos y Diccionarios (Sprint 3)
+Para este sprint, el sistema evolucionó para conservar la información de los diagnósticos entre diferentes ejecuciones del programa y estructurar los datos de manera más eficiente.
 
-📁 Formato de Archivo Elegido: JSON
-Se seleccionó JSON (servers/servidores.json) debido a su capacidad innata para mapear de forma directa y limpia las estructuras de diccionarios anidados de Python, simulando una base de datos documental que facilita operaciones sin perder el tipo de dato original.
+### 📁 Formato de Archivo Elegido
+* **Formato:** `JSON` (`servers/servidores.json`).
+* **Justificación:** Se seleccionó este formato debido a su capacidad innata para mapear de forma directa y limpia las estructuras de diccionarios anidados de Python, simulando una base de datos documental que facilita las operaciones de lectura, escritura y actualización sin perder el tipo de dato original.
 
-💡 Decisión de Diseño: Gestión en Memoria Viva
+### 💡 Decisión de Diseño: Gestión en Memoria Viva
 ⚠️ Nota de Arquitectura: Con el fin de optimizar los accesos a disco, el ciclo de vida del ABM (Alta, Baja, Modificación) opera directamente sobre la memoria RAM reflejándose en el estado de la sesión actual. Los cambios se consolidan de manera explícita en el almacenamiento local únicamente cuando el usuario selecciona de forma voluntaria la opción de Guardar Configuración en el menú principal.
 
+### 🧠 Organización de los Diccionarios
+Toda la información del sistema se estructuró mediante un **diccionario principal** (donde la clave única es el nombre de cada servidor) que almacena de forma interna **diccionarios embebidos** con los datos técnicos y los resultados calculados. 
 ---
 
 ## 💻 Flujo de Ejecución del Programa
@@ -55,48 +58,7 @@ Se seleccionó JSON (servers/servidores.json) debido a su capacidad innata para 
 5. Las listas de alertas y recomendaciones resultantes son capturadas por **`output.py`** para imprimirlas en la terminal de forma amigable.
 
 ---
-
-## 📋 Ejemplo de Ejecución en Consola
-
-### Datos ingresados de prueba:
-- **Nombre del servidor:** sv-produccion-utn
-- **CPU:** 90.0
-- **RAM:** 92.0
-- **Espacio Libre en Disco:** 50.0
-- **Sistema Operativo:** Windows Server
-- **Firewall:** Desactivado
-- **Servicios activos:** 5
-- **Tráfico de Red (MB/s):** 120.0
-
-### Resultado del Reporte Técnico generado:
-```text
-============================================================
-DIAGNOSTICO DEL SERVIDOR: sv-produccion-utn
-============================================================
-Estado General: Alerta crtica / Revision
-------------------------------------------------------------
-Problemas detectados:
-- Uso critico de recursos principales (CPU/RAM).
-  💡 Recomendación: Reiniciar servicios pesados o escalar hardware.
-- Servidor Windows expuesto sin Firewall activo
-  💡 Recomendación: Habilitar el firewall del sistema de inmediato
-
-============================================================
-
-
-
-
-## 💾 Evolución a Persistencia de Datos y Diccionarios (Sprint 3)
-Para este sprint, el sistema evolucionó para conservar la información de los diagnósticos entre diferentes ejecuciones del programa y estructurar los datos de manera más eficiente.
-
-### 📁 Formato de Archivo Elegido
-* **Formato:** `JSON` (`servers/servidores.json`).
-* **Justificación:** Se seleccionó este formato debido a su capacidad innata para mapear de forma directa y limpia las estructuras de diccionarios anidados de Python, simulando una base de datos documental que facilita las operaciones de lectura, escritura y actualización sin perder el tipo de dato original.
-
-### 🧠 Organización de los Diccionarios
-Toda la información del sistema se estructuró mediante un **diccionario principal** (donde la clave única es el nombre de cada servidor) que almacena de forma interna **diccionarios embebidos** con los datos técnicos y los resultados calculados. 
-
-La estructura del mapa de datos guardado en el archivo sigue este diseño algorítmico puro:
+### La estructura del mapa de datos guardado en el archivo sigue este diseño algorítmico puro:
 * **Llave principal (`str`):** `nombre_servidor`
 * **Valores (`dict`):**
   * `cpu` (`float`): Porcentaje de uso de la CPU.
@@ -118,3 +80,34 @@ Se incorporó el soporte para la gestión completa del historial técnico:
   3. Buscar la ficha técnica de un servidor específico (Consulta).
   4. Modificar los parámetros técnicos y forzar una re-evaluación (Modificación).
   5. Remover permanentemente un registro de la base de datos (Baja).
+
+---
+
+## 📋 Ejemplo de Ejecución en Consola
+
+### Datos ingresados de prueba:
+Seleccione una opcion: 1
+Ingrese el nombre del servidor (minimo 6 caracteres): sv-produccion-utn
+Ingrese el porcentaje de uso de CPU: 90
+Ingrese el porcentaje de uso de RAM: 92
+Ingrese el porcentaje de uso de Espacio Libre en Disco: 50
+Sistema Operativo (escribir exactamente Linux / Windows Server): Linux
+Estado del Firewall (escribir exactamente Activado / Desactivado): Desactivado
+Ingrese la cantidad de servicios activos: 5
+Ingrese el porcentaje de uso de Tráfico de Red (MB/s): 120
+❌ERROR❌: El porcentaje de Tráfico de Red (MB/s) debe estar entre 0 y 100. Reintente.
+Ingrese el porcentaje de uso de Tráfico de Red (MB/s): 100
+### Resultado del Reporte Técnico generado:
+```text
+============================================================
+       📊 REPORTE TÉCNICO GENERADO: sv-produccion-utn
+============================================================
+  ⚠️  ALERTAS CRÍTICAS DETECTADAS:
+        ❌ Uso critico de recursos principales (CPU/RAM).
+           ↳ Justificación: Ambos recursos principales superan el umbral crítico del 85%.
+------------------------------------------------------------
+  💡 ACCIONES RECOMENDADAS DE INMEDIATO:
+        🛠️  Reiniciar servicios pesados o escalar hardware.
+============================================================
+
+============================================================

@@ -2,7 +2,7 @@ import calculos
 import inputs
 import output 
 import funciones_de_validacion
-from archivos import  crear_archivo_si_no_existe, registrar_diagnostico, ver_diagnosticos_realizados, buscar_diagnostico, modificar_diagnosticos, eliminar_diagnostico,cargar_diagnosticos,guardar_diagnosticos, ejecutar_diagnostico, mostrar_configuracion_actual
+from archivos import  crear_archivo_si_no_existe, registrar_diagnostico,buscar_diagnostico , modificar_diagnosticos, eliminar_diagnostico,cargar_diagnosticos,guardar_diagnosticos, ejecutar_diagnostico, mostrar_configuracion_actual
 
 
 

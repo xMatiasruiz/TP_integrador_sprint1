@@ -1,15 +1,15 @@
 {
-    "servidor01": {
-        "cpu": 90.0,
-        "ram": 56.0,
-        "disco": 45.0,
+    "finaltest": {
+        "cpu": 80.0,
+        "ram": 80.0,
+        "disco": 10.0,
         "sistema operativo": "Linux",
-        "firewall": "Activado",
-        "servicios activos": 34,
-        "trafico red": 34.0,
+        "firewall": "Desactivado",
+        "servicios activos": 100,
+        "trafico red": 10.0,
         "alertas": [
             "",
-            "",
+            "Poco espacio en disco con alta carga de servicios",
             "",
             "",
             "",
@@ -19,7 +19,7 @@
         ],
         "recomendaciones": [
             "",
-            "",
+            "Liberar almacenamiento temporal y logs",
             "",
             "",
             "",
@@ -28,33 +28,62 @@
             "Optimizar hilos de ejecuci\u00f3n o distribuir tareas."
         ]
     },
-    "servidor02": {
-        "cpu": 80.0,
-        "ram": 56.0,
-        "disco": 45.0,
-        "sistema operativo": "Windows Server",
+    "pruebafinal": {
+        "cpu": 90.0,
+        "ram": 90.0,
+        "disco": 10.0,
+        "sistema operativo": "Linux",
         "firewall": "Desactivado",
-        "servicios activos": 70,
-        "trafico red": 40.0,
+        "servicios activos": 250,
+        "trafico red": 10.0,
+        "alertas": [
+            "Uso critico de recursos principales (CPU/RAM).",
+            "Poco espacio en disco con alta carga de servicios",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Entorno Linux con sobrecarga de procesos activos."
+        ],
+        "recomendaciones": [
+            "Reiniciar servicios pesados o escalar hardware.",
+            "Liberar almacenamiento temporal y logs",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Optimizar hilos de ejecuci\u00f3n o distribuir tareas."
+        ]
+    },
+    "anashee": {
+        "cpu": 85.0,
+        "ram": 85.0,
+        "disco": 1.0,
+        "sistema operativo": "Linux",
+        "firewall": "Activado",
+        "servicios activos": 255,
+        "trafico red": 10.0,
         "alertas": [
             "",
-            "",
-            "Servidor Windows expuesto sin Firewall activo",
-            "",
+            "Poco espacio en disco con alta carga de servicios",
             "",
             "",
             "",
-            ""
+            "",
+            "Colapso inminente de la m\u00e1quina (L\u00edmite de Disco o CPU).",
+            "Entorno Linux con sobrecarga de procesos activos."
         ],
         "recomendaciones": [
             "",
-            "",
-            "Habilitar el firewall del sistema de inmediato",
-            "",
+            "Liberar almacenamiento temporal y logs",
             "",
             "",
             "",
-            ""
+            "",
+            "Aplicar protocolo de mantenimiento de emergencia.",
+            "Optimizar hilos de ejecuci\u00f3n o distribuir tareas."
         ]
     }
 }

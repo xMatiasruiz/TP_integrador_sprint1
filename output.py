@@ -5,7 +5,7 @@ def mostrar_diagnostico(nombre: str, alertas: list, recomendaciones: list) -> No
     y la justificación técnica de cada diagnóstico según las reglas del negocio.
     """
     print("\n" + "=" * 60)
-    print(f"       📊 REPORTE TÉCNICO GENERADO: {nombre.upper()}")
+    print(f"       📊 REPORTE TÉCNICO GENERADO: {nombre}")
     print("=" * 60)
     
     print("  ⚠️  ALERTAS CRÍTICAS DETECTADAS:")

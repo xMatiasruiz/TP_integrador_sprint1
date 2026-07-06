@@ -8,7 +8,7 @@ def validacion_porcentaje_numerico(num: str) -> bool:
 
     Returns:
         bool: True si el string es un número válido entre 0 y 100 (inclusive), 
-              False en caso contrario.
+            False en caso contrario.
 
     """
 

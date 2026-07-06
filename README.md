@@ -20,20 +20,24 @@ Es una aplicación de consola diseñada bajo un enfoque de **arquitectura modula
 - Evaluar el rendimiento del hardware y software del servidor en tiempo real.
 - Detectar vulnerabilidades críticas de seguridad.
 - Consolidar alertas y recomendaciones técnicas utilizando listas e índices algorítmicos (sin métodos avanzados de listas).
-- Entregar al administrador un reporte técnico limpio y estructurado.
+- Ofrecer un sistema CRUD completo con persistencia local en formato estructurado.
 
 ---
 
-## 🛠️ Arquitectura Modular (Sprint 2)
-El código se reestructuró por completo en módulos con responsabilidades independientes para cumplir con las buenas prácticas de desarrollo:
-
-* **`main.py`:** Punto de entrada. Inicializa la aplicación invocando al menú principal.
-* **`menu.py`:** Controla el flujo de navegación de la interfaz de usuario en consola.
-* **`inputs.py`:** Centraliza la captura de datos por teclado.
-* **`validaciones.py`:** Contiene las funciones de control encargadas de verificar rangos, tipos de datos y textos mínimos.
-* **`reglas.py`:** Lógica pura del negocio. Aloja las 8 funciones condicionales de evaluación.
-* **`calculos.py`:** Procesa las métricas llamando a las reglas y guardando los resultados en listas paralelas ordenadas por índice.
-* **`output.py`:** Módulo especializado en recorrer las listas mediante bucles `while` y dar formato visual al reporte final.
+SPRINT/
+│📁 Estructura del Proyecto
+└── TP_integrador_sprint1/
+    ├── servers/
+    │   └── servidores.json        # Base de datos documental
+    ├── archivos.py                # Gestión de lectura/escritura y persistencia
+    ├── calculos.py                # Orquestador de evaluaciones lógicas
+    ├── funciones_de_validacion.py # Validaciones genéricas de tipos
+    ├── inputs.py                  # Captura de datos por teclado
+    ├── main.py                    # Punto de entrada de la aplicación
+    ├── menu.py                    # Controlador del flujo y navegación
+    ├── output.py                  # Formateo visual de reportes en consola
+    ├── reglas.py                  # Reglas de negocio condicionales
+    └── validaciones.py            # Reglas de validación específicas 
 
 ---
 

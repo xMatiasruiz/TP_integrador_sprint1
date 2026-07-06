@@ -148,7 +148,7 @@ def buscar_diagnostico() -> None:
     """
     Busca un servidor específico por su nombre en la base de datos JSON
     y muestra su ficha técnica completa junto con el diagnóstico detallado
-    respetando el diseño visual del historial.
+    respetando de forma estricta los requerimientos visuales de la cátedra.
     """
     servidores = cargar_diagnosticos()
     nombre = pedir_nombre_servidor()
@@ -156,46 +156,58 @@ def buscar_diagnostico() -> None:
     if nombre in servidores:
         datos = servidores[nombre]
         
+        # Separador visual superior obligatorio para una presentación prolija
         print("\n" + "=" * 60)
-        print("       🔍 SERVIDOR ENCONTRADO EN LA BASE DE DATOS")
+        print(f"       FICHA TÉCNICA Y DIAGNÓSTICO: {nombre.upper()}")
         print("=" * 60)
         
-        # 1. FICHA TÉCNICA (Idéntica a tu formato de Historial)
-        print(f"\n🖥️  SERVIDOR: {nombre}")
-        print(f"  📊 Métricas -> CPU: {datos['cpu']}% | RAM: {datos['ram']}% | Disco Libre: {datos['disco']}%")
-        print(f"  ⚙️  Entorno  -> SO: {datos['sistema operativo']} | Firewall: {datos['firewall']}")
-        print(f"  🔌 Tráfico  -> {datos['trafico red']} MB/s | Servicios Activos: {datos['servicios activos']}")
+        # 1. Especificaciones de Hardware (usando f-strings y tabulación)
+        print("  [+] MÉTRICAS DE HARDWARE:")
+        print(f"\t• Uso de CPU       : {datos['cpu']}%")
+        print(f"\t• Uso de RAM       : {datos['ram']}%")
+        print(f"\t• Espacio Libre    : {datos['disco']}%")
+        print(f"\t• Tráfico de Red   : {datos['trafico red']} MB/s")
+        print("-" * 60)
         
-        # 2. FILTRAR Y MOSTRAR ALERTAS (Igual a tu historial)
-        print("  ⚠️  Alertas Detectadas:")
+        # 2. Datos del Entorno
+        print("  [+] ENTORNO Y SISTEMA:")
+        print(f"\t• Sistema Operativo: {datos['sistema operativo']}")
+        print(f"\t• Estado Firewall  : {datos['firewall']}")
+        print(f"\t• Procesos Activos : {datos['servicios activos']}")
+        print("-" * 60)
+        
+        # 3. Evaluación de Alertas (recorriendo la lista fija y filtrando vacíos de forma manual)
+        print("  ⚠️  ALERTAS DETECTADAS:")
         hay_alertas = False
         lista_alertas = datos.get("alertas", [])
         
         for alerta in lista_alertas:
             if alerta != "": 
-                print(f"    ❌ {alerta}")
+                print(f"\t❌ {alerta}")
                 hay_alertas = True
         
         if not hay_alertas:
-            print("    ✅ Ninguna. El servidor opera bajo parámetros normales.")
+            print("\t✅ Ninguna. El servidor opera bajo parámetros normales.")
             
-        # 3. FILTRAR Y MOSTRAR RECOMENDACIONES (Igual a tu historial)
-        print("  💡 Acciones Recomendadas:")
+        print("-" * 60)
+        
+        # 4. Evaluación de Recomendaciones
+        print("  💡 ACCIONES RECOMENDADAS:")
         hay_recom = False
         lista_recom = datos.get("recomendaciones", [])
         
         for recom in lista_recom:
             if recom != "": 
-                print(f"    🛠️  {recom}")
+                print(f"\t🛠️  {recom}")
                 hay_recom = True
         
         if not hay_recom:
-            print("    🔹 No se requieren acciones de mantenimiento inmediatas.")
+            print("\t🔹 No se requieren acciones de mantenimiento inmediatas.")
             
     else:
-        print("\n❌ El servidor no se encuentra en la base de datos.")
+        print(f"\n❌ El servidor '{nombre}' no se encuentra registrado en la base de datos.")
         
-    print("\n" + "=" * 60)
+    print("=" * 60 + "\n")
     input("Presione ENTER para continuar...")
 
 def modificar_diagnosticos() -> None:

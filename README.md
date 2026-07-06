@@ -22,24 +22,6 @@ Es una aplicación de consola diseñada bajo un enfoque de **arquitectura modula
 - Consolidar alertas y recomendaciones técnicas utilizando listas e índices algorítmicos (sin métodos avanzados de listas).
 - Ofrecer un sistema CRUD completo con persistencia local en formato estructurado.
 
----
-
-SPRINT/
-│📁 Estructura del Proyecto
-└── TP_integrador_sprint1/
-    ├── servers/
-    │   └── servidores.json        # Base de datos documental
-    ├── archivos.py                # Gestión de lectura/escritura y persistencia
-    ├── calculos.py                # Orquestador de evaluaciones lógicas
-    ├── funciones_de_validacion.py # Validaciones genéricas de tipos
-    ├── inputs.py                  # Captura de datos por teclado
-    ├── main.py                    # Punto de entrada de la aplicación
-    ├── menu.py                    # Controlador del flujo y navegación
-    ├── output.py                  # Formateo visual de reportes en consola
-    ├── reglas.py                  # Reglas de negocio condicionales
-    └── validaciones.py            # Reglas de validación específicas 
-
----
 
 ## 🧠 Listado de Reglas Implementadas
 El sistema evalúa de manera algorítmica un mínimo de 8 reglas lógicas combinadas (cumpliendo con operadores `AND`, `OR`, `NOT`, rangos numéricos y combinaciones de 3 o más variables):
@@ -52,6 +34,16 @@ El sistema evalúa de manera algorítmica un mínimo de 8 reglas lógicas combin
 6. **Saturación de Red (3+ Variables / `AND`):** Alerta si el tráfico supera los 800.0 MB/s, el firewall está "Activado" y el sistema mitiga la carga.
 7. **Mantenimiento Urgente (`OR` / Rango Numérico):** Determina colapso inminente si el disco libre cae por debajo del 5.0% **O** la CPU supera el 95.0%.
 8. **Optimización de S.O. (`AND`):** Alerta si el entorno es "Linux" y maneja una sobrecarga de más de 25 servicios activos.
+
+---
+💾 Persistencia de Datos y Arquitectura de Memoria (Sprint 3)
+El sistema evolucionó para conservar la información de los diagnósticos entre diferentes ejecuciones del programa y estructurar los datos de manera eficiente.
+
+📁 Formato de Archivo Elegido: JSON
+Se seleccionó JSON (servers/servidores.json) debido a su capacidad innata para mapear de forma directa y limpia las estructuras de diccionarios anidados de Python, simulando una base de datos documental que facilita operaciones sin perder el tipo de dato original.
+
+💡 Decisión de Diseño: Gestión en Memoria Viva
+⚠️ Nota de Arquitectura: Con el fin de optimizar los accesos a disco, el ciclo de vida del ABM (Alta, Baja, Modificación) opera directamente sobre la memoria RAM reflejándose en el estado de la sesión actual. Los cambios se consolidan de manera explícita en el almacenamiento local únicamente cuando el usuario selecciona de forma voluntaria la opción de Guardar Configuración en el menú principal.
 
 ---
 
